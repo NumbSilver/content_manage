@@ -38,22 +38,23 @@ export default class LeftNav extends Component{
                 </Menu.Item>
                 <SubMenu key="sub1" icon={<AppstoreOutlined />} title="商品">
                 <Menu.Item key="2">分类管理</Menu.Item>
-                <SubMenu key="sub2" title="商品管理">
-                    <Menu.Item key="3">主页面</Menu.Item>
+                <Menu.Item key="3">商品管理</Menu.Item>
+                {/* <SubMenu key="sub2" title="商品管理">
+                    {/* <Menu.Item key="3">主页面</Menu.Item>
                     <Menu.Item key="4">添加/更新</Menu.Item>
                     <Menu.Item key="5">详情</Menu.Item>
+                </SubMenu> */}
                 </SubMenu>
-                </SubMenu>
-                <Menu.Item key="36" icon={<ContainerOutlined />}>
+                <Menu.Item key="4" icon={<ContainerOutlined />}>
                 用户管理
                 </Menu.Item>
-                <Menu.Item key="7" icon={<ContainerOutlined />}>
+                <Menu.Item key="5" icon={<ContainerOutlined />}>
                 角色管理
                 </Menu.Item>
                 <SubMenu key="sub3" icon={<MailOutlined />} title="图形图标">
-                <Menu.Item key="8">折线图</Menu.Item>
-                <Menu.Item key="9">饼状图</Menu.Item>
-                <Menu.Item key="10">柱状图</Menu.Item>
+                <Menu.Item key="6">折线图</Menu.Item>
+                <Menu.Item key="7">饼状图</Menu.Item>
+                <Menu.Item key="8">柱状图</Menu.Item>
                 </SubMenu>
             </Menu>
         </div>
