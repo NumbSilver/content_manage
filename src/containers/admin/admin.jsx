@@ -11,6 +11,7 @@ import Header from './header/header'
 
 import './css/admin.less'
 import Home from '../../components/home/home'
+import LeftNav from '../left_nav/left_nav'
 import Category from '../category/category'
 import Product from '../product/product'
 import User from '../user/user'
@@ -46,7 +47,9 @@ class Admin extends Component{
     }else{
       return (
         <Layout className = 'admin'>
-          <Sider className = 'sider'>Sider</Sider>
+          <Sider className = 'sider'>
+           <LeftNav/>
+          </Sider>
           <Layout>
             <Header className = 'header'>Header</Header>
             <Content className = 'content'>
