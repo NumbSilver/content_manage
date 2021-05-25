@@ -3,25 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@ant-design/icons": "^4.6.2",
+    "@babel/plugin-proposal-decorators": "^7.14.2",
+    "antd": "^4.15.6",
+    "axios": "^0.21.1",
+    "babel-plugin-import": "^1.12.2",
+    "customize-cra": "^0.9.1",
+    "dayjs": "^1.10.4",
+    "draft-js": "^0.11.2",
+    "draftjs-to-html": "^0.8.4",
+    "express": "^4.17.1",
+    "html-to-draftjs": "^1.4.0",
+    "jsonp": "^0.2.1",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0",
+    "nprogress": "^0.2.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "react-app-rewired": "^2.1.5",
+    "react-dom": "^16.12.0",
+    "react-draft-wysiwyg": "^1.13.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-thunk": "^1.0.0",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "screenfull": "^5.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -34,5 +51,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.9"
+  },
+  "proxy": "http://localhost:5000"
 }

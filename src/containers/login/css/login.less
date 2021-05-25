@@ -1,0 +1,61 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+    background-color: #ecf0f3;
+    #root{
+        width: 100%;
+        height: 100%;
+        .app{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.login{
+    width: 100%;
+    height: 100%;
+    header{
+        display: flex;
+        width: 100%;
+        height: 80px;
+        background: rgb(193, 197, 204);
+        img{
+            width: 55px;
+            height: 55px;
+            margin: 10px;
+        }
+        h1{
+            color: #302e2e;
+            font-size: 30px;
+            line-height: 80px;
+            font-weight: bolder;
+        }
+    }
+    section{
+        position: absolute;
+        width: 600px;
+        height: 500px;
+        background-color: #ecf0f3;
+        box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+        border-radius: 12px;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        h1{
+            text-align: center;
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 150px;
+            color: #181818;
+        }
+        .logForm{
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    }
+
+}
