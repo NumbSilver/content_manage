@@ -13,7 +13,7 @@ import {connect} from 'react-redux'
 import {createSaveUserInfoAction} from '../../redux/action_creators/login_action'
 
 
-import logo from './imgs/logo.png'
+import logo from '../../static/imgs/logo.png'
 import './css/login.less'
 // import { responsiveArray } from 'antd/lib/_util/responsiveObserve';
 
