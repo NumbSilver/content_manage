@@ -60,7 +60,7 @@ class Login extends Component{
       //返回User信息 token交给redux管理
       this.props.saverUserInfo(data)
       // 登录成功 跳转！(先跳转内容过不去)
-      this.props.history.replace('/admin')
+      this.props.history.replace('/admin/home')
     }
     if(status===1){
       message.warning(msg,1)
@@ -81,7 +81,7 @@ class Login extends Component{
       };
       const {isLogin} =this.props;
       if(isLogin){
-        return <Redirect to="/admin"/>
+        return <Redirect to="/admin/home"/>
       }
       //如果已经登录了，直接跳转
     return (

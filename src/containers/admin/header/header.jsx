@@ -6,14 +6,16 @@ import screenfull from 'screenfull'
 import dayjs from 'dayjs'
 import {connect} from 'react-redux'
 import {createDeleteUserInfoAction} from '../../../redux/action_creators/login_action'
+import menuList from '../../../config/menu_config'
 import {reqWeather} from '../../../api'
 import './css/header.less'
 
 
 const { confirm } = Modal;
-
 @connect(
-  state=>({userInfo:state.userInfo}),
+  state=>({userInfo:state.userInfo,
+    title:state.title
+  }),
   {
     deleteUserInfo:createDeleteUserInfoAction
   }
@@ -24,6 +26,7 @@ class Header extends Component{
     isFull:false,
     date:dayjs().format('YYYY年 MM月DD日 HH:mm:ss'),
     weatherInfo:{},
+    title:''
   }
   fullScreen = (()=>{
     screenfull.toggle()
@@ -41,6 +44,7 @@ class Header extends Component{
       this.setState({date:dayjs().format('YYYY年 MM月DD日 HH:mm:ss')})
     },1000)
     this.getWeather()
+    this.getTitle()
   }
   componentWillUnmount(){
     clearInterval(this.timeId)
@@ -57,6 +61,21 @@ class Header extends Component{
       }
     });
   })
+  getTitle = (()=>{
+    let pathKey = this.props.location.pathname.split('/').reverse()[0]
+    let title = ''
+    menuList.forEach ((item)=>{
+      if(item.children instanceof Array){
+        let res = item.children.find ((childItem)=>{
+          return childItem.key == pathKey
+        })
+        if(res) title =res.title;
+      }else{
+        if(item.key ==pathKey)  title = item.title
+      }
+    })
+    this.setState({title})
+  })
   render(){
     let {isFull} = this.state
     let {user} = this.props.userInfo
@@ -71,8 +90,7 @@ class Header extends Component{
           </div>
           <div className="header-bottom">
             <div className="header-bottom-left">
-  
-              {this.props.location.pathname}
+              {this.props.title||this.state.title}
             </div>
             <div className="header-bottom-right">
               {this.state.date}

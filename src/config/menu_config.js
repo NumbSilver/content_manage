@@ -3,25 +3,24 @@ export default[
   {
     title: '首页', // 菜单标题名称
     key: 'home', // 对应的path
-    // icon: 'home', // 图标名称
-    icon: 'HomeOutlined',
+    icon: 'HomeOutlined', // 图标名称,具体组件的配置路径写在JSX文件中
     path: '/admin/home'//对应路径
   },
   {
     title: '商品',
     key: 'prod_about',
-    icon:'{<HomeOutlined />}',
+    icon:'AppstoreOutlined',
     children: [ // 子菜单列表
       {
         title: '分类管理',
         key: 'category',
-        icon:'{<HomeOutlined />}',
+        icon:'UnorderedListOutlined',
         path: '/admin/prod_about/category'
       },
       {
         title: '商品管理',
         key: 'product',
-        icon:'{<HomeOutlined />}',
+        icon:'ToolOutlined',
         path: '/admin/prod_about/product'
       },
     ]
@@ -30,37 +29,37 @@ export default[
   {
     title: '用户管理',
     key: 'user',
-    icon:'{<HomeOutlined />}',
+    icon:'UserOutlined',
     path: '/admin/user'
   },
   {
     title: '角色管理',
     key: 'role',
-    icon:'{<HomeOutlined />}',
+    icon:'IdcardOutlined',
     path: '/admin/role'
   },
 
   {
     title: '图形图表',
     key: 'charts',
-    icon:'{<HomeOutlined />}',
+    icon:'AreaChartOutlined',
     children: [
       {
         title: '柱形图',
         key: 'bar',
-        icon: '{<HomeOutlined />}',
+        icon: 'BarChartOutlined',
         path: '/admin/charts/bar'
       },
       {
         title: '折线图',
         key: 'line',
-        icon: '{<HomeOutlined />}',
+        icon: 'LineChartOutlined',
         path: '/admin/charts/line'
       },
       {
         title: '饼图',
         key:  'pie',
-        icon: '{<HomeOutlined />}',
+        icon: 'PieChartOutlined',
         path: '/admin/charts/pie'
       },
     ]
