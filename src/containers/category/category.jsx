@@ -25,7 +25,21 @@ export default class Category extends Component{
       message.error(msg,1)
     }
   }
-g
+  // App = () => {
+  //   const [isModalVisible, setIsModalVisible] = useState(false);
+  //   showModal = () => {
+  //     setIsModalVisible(true);
+  //   };
+  
+  //   handleOk = () => {
+  //     setIsModalVisible(false);
+  //   };
+  
+  //   handleCancel = () => {
+  //     setIsModalVisible(false);
+  //   };
+  
+  // };
   render(){
     const dataSource = this.state.categoryList;
     const columns = [
