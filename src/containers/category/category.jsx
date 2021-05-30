@@ -14,15 +14,16 @@ export default class Category extends Component{
     categoryList:[],
     isModalVisible: false,// 控制弹窗的展示或者隐藏
     operTypr :'',
-    value: ''
+    value: '',
+    isLoading : true
   }
   componentDidMount(){
     this.getCategoryList()
   }
   getCategoryList= async()=>{
     let result = await reqCatgoryList()
+    this.setState({isLoading:false})
     let{status,data,msg} = result
-
     if(status===0){
       this.setState({categoryList:data.reverse()})
     }else{
@@ -92,7 +93,7 @@ export default class Category extends Component{
   
   render(){
     const dataSource = this.state.categoryList;
-    const {operTypr,isModalVisible,value} = this.state;
+    const {operTypr,isModalVisible,value,isLoading} = this.state;
     const columns = [
       {
         title: '分类名',
@@ -113,7 +114,9 @@ export default class Category extends Component{
         <div>
           <Card className="category" title="" extra={<Button onClick={this.showAdd} type="primary" icon={<PlusOutlined />}>添加分类</Button>}>  
             <Table dataSource={dataSource} columns={columns} 
-                  bordered rowKey="_id" pagination={{pageSize:PAGE_SIZE}}/>
+                  bordered rowKey="_id" pagination={{pageSize:PAGE_SIZE}}
+                  loading = {isLoading}
+            />
           </Card>
           <Modal title={operTypr==='add'?'添加分类':'修改分类'} visible={isModalVisible} 
                 onOk={this.handleOk} onCancel={this.handleCancel}
@@ -126,11 +129,6 @@ export default class Category extends Component{
               >
                 <Input placeholder="请输入分类名称" value={value} onChange={this.handleChange}/>
               </Form.Item>
-              {/* <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item> */}
             </Form>
           </Modal>
         </div>
