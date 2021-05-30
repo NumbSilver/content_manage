@@ -32,3 +32,7 @@ export const reqWeather = ()=>{
       })
     })
   }
+
+
+//新增商品 ({categoryName}) 相当于完成了一步解构赋值。不然传参应该传 values.categoryName
+export const reqAddCategory = ({categoryName})=>myAxios.post(`${BASE_URL}/manage/category/add`,{categoryName})

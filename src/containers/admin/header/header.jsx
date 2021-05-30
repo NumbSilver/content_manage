@@ -67,11 +67,11 @@ class Header extends Component{
     menuList.forEach ((item)=>{
       if(item.children instanceof Array){
         let res = item.children.find ((childItem)=>{
-          return childItem.key == pathKey
+          return childItem.key === pathKey
         })
         if(res) title =res.title;
       }else{
-        if(item.key ==pathKey)  title = item.title
+        if(item.key === pathKey)  title = item.title
       }
     })
     this.setState({title})

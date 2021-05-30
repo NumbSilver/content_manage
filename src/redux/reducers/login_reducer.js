@@ -6,7 +6,6 @@ let InitState = {
     token: token || '',
     isLogin: user && token ? true :false
 }
-InitState = InitState
 export default function loginReducer(preState = InitState,action) {
     const {type,data} = action
     let newState 

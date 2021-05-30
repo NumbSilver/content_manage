@@ -39,7 +39,8 @@ class Admin extends Component{
   // }
 
  render(){
-    const {user,token,isLogin} = this.props.userInfo;
+    const {isLogin} = this.props.userInfo;
+    // const {user,token,isLogin} = this.props.userInfo;
     if(!isLogin){
       this.props.history.replace('/login')
       // 如果没登录必须return一下，不然render会出错
