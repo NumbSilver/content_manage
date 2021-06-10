@@ -3,7 +3,7 @@ import './css/category.less'
 import {Card,Button,Table,message,Modal,Form,Input} from 'antd'
 import {PlusOutlined} from '@ant-design/icons'
 
-import {reqCatgoryList,reqAddCategory} from '../../api'
+import {reqCatgoryList,reqAddCategory,reqUpdateCategory} from '../../api'
 import {PAGE_SIZE} from '../../config/index'
 
 // import { FormInstance } from 'antd/lib/form';
@@ -15,7 +15,10 @@ export default class Category extends Component{
     isModalVisible: false,// 控制弹窗的展示或者隐藏
     operTypr :'',
     value: '',
-    isLoading : true
+    isLoading : true,
+    modalCurrentValue:'',//弹窗现实的值----用于数据回显
+    modalCurrentId:'',//弹窗现实的值----用于修改
+
   }
   componentDidMount(){
     this.getCategoryList()
@@ -33,12 +36,16 @@ export default class Category extends Component{
   showAdd = () => {
     this.setState({
       operTypr:'add',
-      isModalVisible: true})
+      isModalVisible: true,})
   };
-  showUpdate = () => {
+  showUpdate = (item) => {
+    const {_id,name} = item;
     this.setState({
       operTypr:'update',
-      isModalVisible: true})
+      isModalVisible: true,
+      modalCurrentValue: name,
+      modalCurrentId: _id
+    })
   };
   
   toAdd =async(values)=>{
@@ -53,8 +60,8 @@ export default class Category extends Component{
     }
     if(status === 1) message.error(msg,1)
   }
-  toUpDate = async(XXX)=>{
-    let result = await reqAddCategory(XXX)
+  toUpDate = async(categoryObj)=>{
+    let result = await reqUpdateCategory(categoryObj)
     const {status,msg} = result
     if(status === 0) {
       message.success('更新商品分类成功',1)
@@ -72,7 +79,10 @@ export default class Category extends Component{
       values.categoryName = this.state.value
       if(operTypr==='add') this.toAdd(values)
       if(operTypr==='update'){
-        console.log('修改')
+        const categoryId = this.state.modalCurrentId
+        const categoryName = values.categoryName
+        const categoryObj = {categoryId,categoryName}
+        this.toUpDate(categoryObj)
       }
 
     })
@@ -87,13 +97,16 @@ export default class Category extends Component{
   handleCancel = () => {
     this.setState({isModalVisible: false})
   };
+  onChange(pageNumber) {
+    console.log('Page: ', pageNumber);
+  }
 
 
 
   
   render(){
     const dataSource = this.state.categoryList;
-    const {operTypr,isModalVisible,value,isLoading} = this.state;
+    const {operTypr,isModalVisible,modalCurrentValue,isLoading} = this.state;
     const columns = [
       {
         title: '分类名',
@@ -104,7 +117,7 @@ export default class Category extends Component{
         title: '操作',
         // dataIndex: 'key', 当动态传参的时候，写谁传谁
         key: 'todo',
-        render:()=>{return <Button type="link" onClick={this.showUpdate}>修改分类</Button>},
+        render:(item)=>{return <Button type="link" onClick={()=>{this.showUpdate(item)}}>修改分类</Button>},
         width:'25%',
         align:'center',
       }
@@ -114,7 +127,7 @@ export default class Category extends Component{
         <div>
           <Card className="category" title="" extra={<Button onClick={this.showAdd} type="primary" icon={<PlusOutlined />}>添加分类</Button>}>  
             <Table dataSource={dataSource} columns={columns} 
-                  bordered rowKey="_id" pagination={{pageSize:PAGE_SIZE}}
+                  bordered rowKey="_id" pagination={{pageSize:PAGE_SIZE,showQuickJumper:true}}
                   loading = {isLoading}
             />
           </Card>
@@ -122,12 +135,12 @@ export default class Category extends Component{
                 onOk={this.handleOk} onCancel={this.handleCancel}
                 okText='确定' cancelText='取消'
           >
-            <Form ref={this.formRef} onFinish={this.handleOk}>
-              <Form.Item
-                name="categoryName"
-                rules={[{ required: true, message: '分类名称不能为空!' }]}
+            <Form ref={this.formRef}>
+              <Form.Item 
+                name="categoryName" rules={[{ required: true, message: '分类名称不能为空!' }]} 
+                initialValue={modalCurrentValue}
               >
-                <Input placeholder="请输入分类名称" value={value} onChange={this.handleChange}/>
+                <Input placeholder="请输入分类名称"  onChange={this.handleChange}/>
               </Form.Item>
             </Form>
           </Modal>

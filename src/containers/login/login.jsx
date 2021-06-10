@@ -56,7 +56,6 @@ class Login extends Component{
     // console.log(res)
     const {status,msg,data} = res;
     if(status===0){
-      console.log(data);
       //返回User信息 token交给redux管理
       this.props.saverUserInfo(data)
       // 登录成功 跳转！(先跳转内容过不去)
@@ -81,7 +80,7 @@ class Login extends Component{
       };
       const {isLogin} =this.props;
       if(isLogin){
-        return <Redirect to="/admin/home"/>
+        return <Redirect to="/admin"/>
       }
       //如果已经登录了，直接跳转
     return (

@@ -72,15 +72,15 @@ class LeftNav extends Component{
         )
     }
     render(){
-        // let path = this.props.location.pathname.split('/')
+        let {pathname}= this.props.location
         return (
             <div>
                 <div className="lefttitle">
                     <img src={logo} alt="logo"></img>
                     管理中心</div>
                 <Menu
-                    defaultSelectedKeys={this.props.location.pathname.split('/').reverse()[0]} //默认选中
-                    defaultOpenKeys={this.props.location.pathname.split('/').splice(2)} //默认打开
+                    selectedKeys={pathname.indexOf('product')!==-1?'product':pathname.split('/').reverse()[0]} //默认选中
+                    defaultOpenKeys={pathname.split('/').splice(2)} //默认打开
                     mode="inline"
                     theme="dark"
                     className = "menu"

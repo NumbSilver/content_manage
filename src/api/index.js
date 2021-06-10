@@ -18,8 +18,9 @@ export const reqCatgoryList= ()=>myAxios.get(`${BASE_URL}/manage/category/list`)
 
 //获取天气信息（百度接口,使用jsonp的方式请求）
 export const reqWeather = ()=>{
-    return new Promise((resolve,reject)=>{
-        jsonp(`http://api.map.baidu.com/telematics/v3/weather?location=${CITY}&output=json&ak=${WEATHER_ak}`,(err,data)=>{
+    return new Promise((resolve)=>{
+        jsonp(`http://api.map.baidu.com/telematics/v3/weather?location=${CITY}&output=json&ak=${WEATHER_ak}`,
+        (err,data)=>{
         if(err){
           message.error('请求天气接口失败，请联系管理员')
           return new Promise(()=>{})
@@ -34,5 +35,21 @@ export const reqWeather = ()=>{
   }
 
 
-//新增商品 ({categoryName}) 相当于完成了一步解构赋值。不然传参应该传 values.categoryName
+//新增商品分类 ({categoryName}) 相当于完成了一步解构赋值。不然传参应该传 values.categoryName
 export const reqAddCategory = ({categoryName})=>myAxios.post(`${BASE_URL}/manage/category/add`,{categoryName})
+
+
+//更新商品分类
+export const reqUpdateCategory = ({categoryId,categoryName})=>myAxios.post(`${BASE_URL}/manage/category/update`,{categoryId,categoryName})
+
+//请求商品分页列表
+export const reqProductList =  (pageNum,pageSize)=>myAxios.get(`${BASE_URL}/manage/product/list`,{params:{pageNum,pageSize}})
+
+// 搜索商品
+export const reqproductSearch =  (pageNum,pageSize,searchType,keyWord)=>myAxios.get(`${BASE_URL}/manage/product/search`,{params:{pageNum,pageSize,[searchType]:keyWord}})
+//   if(searchType==='name'){
+//     myAxios.get(`${BASE_URL}/manage/product/serach`,{params:{pageNum,pageSize,productName:keyWord}})
+//   }else{
+//     myAxios.get(`${BASE_URL}/manage/product/serach`,{params:{pageNum,pageSize,productDesc:keyWord}})
+//   }
+// }
